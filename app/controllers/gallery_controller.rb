@@ -1,10 +1,18 @@
 class GalleryController < ApplicationController
   PICSUM_URL = 'https://picsum.photos'
   def index
-    @photos = client.get('v2/list')&.body
+    @photos = params["search"].present? ? photos.select { |p| p["author"].include?(params["search"]) } : photos
+  end
+
+  def show
+    @photo = photos.find { |p| p['id'] == params["id"] }
   end
 
   private
+
+  def photos
+    @photos ||= client.get('v2/list')&.body
+  end
 
   def client
     @client ||= Faraday.new(
