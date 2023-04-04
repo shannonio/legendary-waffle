@@ -1,0 +1,7 @@
+<div class="imgcontainer">
+  <%= image_tag(@photo['download_url']) %>
+  <p>Width: <%= @photo['width'] %></p>
+  <p>Height: <%= @photo['height'] %></p>
+  <p>Url: <%= link_to @photo['url'], @photo['url'] %></p>
+  <p>Download Url: <%= link_to @photo["download_url"], @photo["download_url"] %></p>
+</div>

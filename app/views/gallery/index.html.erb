@@ -1,0 +1,10 @@
+<input autocomplete="off" type="search" id="search" placeholder="Search Photos" />
+
+<% @photos.each do |photo| %>
+  <div class="imgcontainer">
+    <%= link_to gallery_show_path(photo["id"]) do %>
+      <%= image_tag(photo['download_url']) %>
+    <% end %>
+    <p><%= photo['author'] %></p>
+  </div>
+<% end %>
