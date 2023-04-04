@@ -23,7 +23,7 @@ require("channels")
 let data
 
 async function fetchData() {
-    const response = await fetch("https://jsonplaceholder.typicode.com/photos");
+    const response = await fetch("/api/search");
     data = await response.json();
     console.log(data)
     return data
@@ -40,14 +40,14 @@ const loadAllTheThings = async () => {
         data
             .filter((item) => {
                 return (
-                    item.title.toLowerCase().includes(search_term) ||
+                    item.author.toLowerCase().includes(search_term) ||
                     item.url.toLowerCase().includes(search_term)
                 );
             })
             .forEach((e) => {
-                const li = document.createElement("li");
-                li.innerHTML = `<div><img src="${e.thumbnailUrl}"/> <br/> <span>${e.title}</span></div>`;
-                results.appendChild(li);
+                const div = document.createElement("div");
+                div.innerHTML = `<div><img src="${e.download_url}"/> <br/> <span>${e.author}</span></div>`;
+                results.appendChild(div);
             });
     };
 
@@ -58,7 +58,7 @@ const loadAllTheThings = async () => {
         showList();
     });
 }
-// fetchData()
+
 loadAllTheThings()
 
 
